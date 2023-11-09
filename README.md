@@ -16,12 +16,30 @@ This project is a social media platform specifically designed for traders. It is
 ## Pages
 
 - **Index Page**: Displays posts from users the user follows and himself.
+![Index](https://raw.githubusercontent.com/87nehal/Beargo/main/Screenshots/home.png)
 
 - **Search**: Allows users to search for other users and posts.
+![Search](https://raw.githubusercontent.com/87nehal/Beargo/main/Screenshots/search.png)
+
+- **Settings**: Allows users to modify user profile settings and toggle dark mode.
+![Search](https://raw.githubusercontent.com/87nehal/Beargo/main/Screenshots/settings.png)
+
 - **Trends Page**: Lists the most used terms in the last 24 hours.
+![Trends](https://raw.githubusercontent.com/87nehal/Beargo/main/Screenshots/trends.png)
+
 - **User Profile Page**: Displays a specific user's profile.
+![Profile](https://raw.githubusercontent.com/87nehal/Beargo/main/Screenshots/profile.png)
+
 - **Post Page**: Allows viewing of a specific post.
+![Post](https://raw.githubusercontent.com/87nehal/Beargo/main/Screenshots/postpage.png)
+
 - **Login and Register Page**: Allows new users to register and existing users to log in.
+![Login](https://raw.githubusercontent.com/87nehal/Beargo/main/Screenshots/login.png)
+![Register](https://raw.githubusercontent.com/87nehal/Beargo/main/Screenshots/register.png)
+
+- **Extra**
+![Comments](https://raw.githubusercontent.com/87nehal/Beargo/main/Screenshots/comments.png)
+![Stocks](https://raw.githubusercontent.com/87nehal/Beargo/main/Screenshots/stockselect.png)
 
 ## Tech Stack
 
