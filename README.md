@@ -21,17 +21,17 @@ This project is a social media platform specifically designed for traders. It is
 - **Post Page**: Allows viewing of a specific post.
 - **Login and Register Page**: Allows new users to register and existing users to log in.
 
-##Tech Stack
+## Tech Stack
 
 - **Database**: A Docker PostgreSQL instance is used as the database, connected to the project using Prisma as the ORM.
 - **Frontend**: The frontend is built using Vue.js, with components organized according to the Vue.js style guide.
 - **Backend**: The backend is built using Node.js, with routes organized according to the REST API conventions.
 
-###Code Snippets
-####User Authentication
+### Code Snippets
+#### User Authentication
 
 The login process is handled by the login function in the useAuth composable. This function sends a POST request to the /api/auth/login endpoint with the user's username and password. If the login is successful, the access token is stored and the user's details are set.
-```
+```bash
     const login = ({ username, password }) =>{
         return new Promise(async (resolve, reject) => {
             try{
@@ -48,9 +48,9 @@ The login process is handled by the login function in the useAuth composable. Th
 
 ```
 
-####Stock Price Fetching
+#### Stock Price Fetching
 The fetchStockPrices function in the Right/index.vue component fetches the latest stock prices for the selected stocks. This function is called when the component is mounted and then every minute thereafter.
-```
+```bash
     const fetchStockPrices = async () => {
         for (const symbol of selectedStocks.value) {
         try {
@@ -77,9 +77,9 @@ The fetchStockPrices function in the Right/index.vue component fetches the lates
     }
 
 ```
-####Image Moderation
+#### Image Moderation
 The uploadToCloudinary function in the imageHandler.js utility file handles the uploading of images. Before an image is uploaded, it is checked for nudity or gore using Sightengine. If the image is safe, it is uploaded to Cloudinary.
-```
+```bash
 export const uploadToCloudinary = async (imagePath) => {
     const config = useRuntimeConfig()
     const data = new FormData();
@@ -132,9 +132,9 @@ export const uploadToCloudinary = async (imagePath) => {
 }
 
 ```
-####User Badges
+#### User Badges
 Badges can be assigned to users using the assignBadgeToUser function in the assignbadge.post.js file. This function takes a user ID and a badge ID and assigns the badge to the user in the database.
-```
+```bash
 import { assignBadgeToUser } from '~/server/db/badges'
 
 export default async (event) => {
@@ -143,10 +143,10 @@ export default async (event) => {
     return res
 
 ```
-###Running the Project
+### Running the Project
 To run the project, you will need to have Docker, Node.js, and Nuxt.js installed. You will also need to set up the necessary environment variables in a .env file in the root directory of the project. Once everything is set up, you can start the project using the npm run dev command.
 
-##Project Setup
+## Project Setup
 Here are the detailed steps to set up the project:
 **Prerequisites**
 
@@ -159,65 +159,73 @@ Before you begin, ensure you have the following installed:
 **Clone the Repository**
 
 First, clone the repository to your local machine. You can do this by running the following command in your terminal:
-```git clone https://github.com/87nehal/Beargo```
+`git clone https://github.com/87nehal/Beargo`
 
 Navigate into the project directory:
-```cd your-project-directory```
+`cd your-project-directory`
 
 
 **Environment Variables**
 
 Next, you need to set up your environment variables. Create a .env file in the root directory of the project and add the following variables:
-```
-DATABASE_URL=your_postgres_database_url
-JWT_ACCESS_TOKEN_SECRET=your_jwt_access_token_secret
-JWT_REFESH_TOKEN_SECRET=your_jwt_refresh_token_secret
-CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
-CLOUDINARY_API_KEY=your_cloudinary_api_key
-CLOUDINARY_API_SECRET=your_cloudinary_api_secret
-PERSPECTIVE_API_KEY=your_perspective_api_key
-FINNHUB_API_KEY=your_finnhub_api_key
-SIGHTENGINE_API_USER=your_sightengine_api_user
-SIGHTENGINE_API_SECRET=your_sightengine_api_secret
+```bash
+DATABASE_URL = your_postgres_database_url
+JWT_ACCESS_TOKEN_SECRET = your_jwt_access_token_secret
+JWT_REFESH_TOKEN_SECRET = your_jwt_refresh_token_secret
+CLOUDINARY_CLOUD_NAME = your_cloudinary_cloud_name
+CLOUDINARY_API_KEY = your_cloudinary_api_key
+CLOUDINARY_API_SECRET = your_cloudinary_api_secret
+PERSPECTIVE_API_KEY = your_perspective_api_key
+FINNHUB_API_KEY = your_finnhub_api_key
+SIGHTENGINE_API_USER = your_sightengine_api_user
+SIGHTENGINE_API_SECRET = your_sightengine_api_secret
 ```
 
 Replace the your_... placeholders with your actual values.
 
-####Install Dependencies
+#### Install Dependencies
 
 Install the project dependencies by running the following command:
-```npm install```
+`npm install`
 
 **Start the Project**
 
 Finally, you can start the project by running:
-```npm run dev```
+`npm run dev`
 
-The application should now be running at http://localhost:3000.
+The application should now be running at `http://localhost:3000`.
 
 **Docker PostgreSQL Instance**
 
 To run a Docker PostgreSQL instance, you can use the following command:
-```docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres```
+```bash 
+docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+```
 
 
 Replace some-postgres with the name you want to give to your Docker PostgreSQL instance and mysecretpassword with your desired password. The -d flag runs the container in the background.
 
 After running the command, you can see your running Docker containers by using:
-```docker ps```
+`docker ps`
 
 Your PostgreSQL instance should be listed there.
 
-###Database Migration
+### Database Migration
 
 To create the necessary tables in your database, you need to run the Prisma migration. You can do this by running:
-```npx prisma migrate dev```
-```npx prisma db push```
+`npx prisma migrate dev`
+`npx prisma db push`
 
 This command will apply the migrations in your prisma/migrations folder to your database.
 
 That's it! You should now have the project running locally on your machine.
 
+
+## Support
+
+For support, email 87nehal@gmail.com.
+
 ## License
 
 MIT
+
