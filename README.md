@@ -5,6 +5,7 @@ This project is a social media platform specifically designed for traders. It is
 ## Features
 
 - **Docker Postgres Instance**: The project uses a Docker Postgres instance as its database, connected to the project using Prisma as ORM.
+- **Cloudinary**: This service is used to host upload and access the mediafiles used in this project.
 - **Perspective API by Jigsaw**: This API is used for language toxicity, insult, profanity, and threat detection.
 - **Sightengine**: This tool is used to identify nudity or gore images and prevent them from being posted on the platform.
 - **Finnhub API**: This API is used to get recent stock prices to be posted on the platform in posts and the sidebar.
@@ -15,6 +16,7 @@ This project is a social media platform specifically designed for traders. It is
 ## Pages
 
 - **Index Page**: Displays posts from users the user follows and himself.
+
 - **Search**: Allows users to search for other users and posts.
 - **Trends Page**: Lists the most used terms in the last 24 hours.
 - **User Profile Page**: Displays a specific user's profile.
