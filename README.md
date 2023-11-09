@@ -47,7 +47,7 @@ This project is a social media platform specifically designed for traders. It is
 ## Tech Stack
 
 - **Database**: A Docker PostgreSQL instance is used as the database, connected to the project using Prisma as the ORM.
-- **Frontend**: The frontend is built using Vue.js, with components organized according to the Vue.js style guide.
+- **Frontend**: The frontend is built using Vue.js, with components organized according to the Vue.js style guide with tailwind css.
 - **Backend**: The backend is built using Node.js, with routes organized according to the REST API conventions.
 
 ### Code Snippets
