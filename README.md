@@ -2,6 +2,9 @@
 
 This project is a social media platform specifically designed for traders. It is built using Vue for the frontend and Nuxt.js for the backend.
 
+![Flow](https://raw.githubusercontent.com/87nehal/Beargo/main/Screenshots/flow.png)
+![Control](https://raw.githubusercontent.com/87nehal/Beargo/main/Screenshots/control.png)
+
 ## Features
 
 - **Docker Postgres Instance**: The project uses a Docker Postgres instance as its database, connected to the project using Prisma as ORM.
