@@ -43,7 +43,7 @@
           Updates
         </template>
       </SidebarLeftTab>
-
+      <!--
       <SidebarLeftTab :active="currentPage === '/circles'" path="/circles">
         <template v-slot:icon>
           <UserGroupIcon :class="currentPage === '/circles' ? 'text-prime-0' : 'text-gray-500'"/>
@@ -52,7 +52,7 @@
           Circles
         </template>
       </SidebarLeftTab>
-
+      -->
       <SidebarLeftTab :active="currentPage === '/trends'" path="/trends">
         <template v-slot:icon>
           <HashtagIcon :class="currentPage === '/trends' ? 'text-prime-0' : 'text-gray-500'"/>
