@@ -94,12 +94,36 @@ export default () => {
       })
       return res
     }
-    return{
-        getProfileByHandle,
-        getSearchUsers,
-        updateUser,
-        checkFollowingStatus,
-        followUser,
-        unfollowUser
-    }  
+    const getTopUsersByFollowers = async () => {
+      const response = await useFetchApi('/api/user/leaderboard/top-followers', {
+        method: 'GET',
+      });
+      return response;
+    };
+    
+    const getTopUsersByBadges = async () => {
+      const response = await useFetchApi('/api/user/leaderboard/top-badges', {
+        method: 'GET',
+      });
+      return response;
+    };
+    
+    const getTopUsersByLikes = async () => {
+      const response = await useFetchApi('/api/user/leaderboard/top-likes', {
+        method: 'GET',
+      });
+      return response;
+    };
+    
+    return {
+      getProfileByHandle,
+      getSearchUsers,
+      updateUser,
+      checkFollowingStatus,
+      followUser,
+      unfollowUser,
+      getTopUsersByFollowers,
+      getTopUsersByBadges,
+      getTopUsersByLikes,
+    };
 }

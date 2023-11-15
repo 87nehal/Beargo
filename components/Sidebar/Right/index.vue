@@ -1,36 +1,5 @@
 <template>
     <div class="flex flex-col">
-      <!--Trends Card-->
-      <SidebarRightPreviewCards title="Trending" buttonText="Show more" @edit-clicked="openTrendingPage">
-          <SidebarRightPreviewCardsItems v-for="trend in trends">
-              <div>
-                  <h2 class="font-bold text-gray-800 text-md dark:text-white">
-                      {{ trend.title }}
-                  </h2>
-                  <p class="text-xs text-gray-400">
-                      {{ trend.count }}
-                  </p>
-              </div>
-          </SidebarRightPreviewCardsItems>
-      </SidebarRightPreviewCards>
-      <!--People Card
-        <SidebarRightPreviewCards title="Who to follow">
-            <SidebarRightPreviewCardsItems v-for="people in peoples">
-                <div class="flex flex-row justify-between p-2">
-                    <div class="flex flex-row">
-                        <img class="w-10 h-10 rounded-full" :src="people.image" :alt="people.username">
-                        <div class="flex flex-col ml-2">
-                            <h1 class="text-sm font-bold text-gray-900 dark:text-white">{{ people.name }}</h1>
-                            <p class="text-xs text-gray-400">{{ people.username }}</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center">
-                        <button class="rounded-full px-4 py-2 font-bold text-xs text-white bg-black
-                        dark:text-black dark:bg-white">Follow</button>
-                    </div>
-                </div>
-            </SidebarRightPreviewCardsItems>
-        </SidebarRightPreviewCards>-->
       <!--Stocks Card-->
       <SidebarRightPreviewCards title="Live Stock Prices" buttonText="Edit" @edit-clicked="openModal">
         <SidebarRightPreviewCardsItems v-for="stock in stocks">
@@ -44,6 +13,24 @@
             </div>
         </SidebarRightPreviewCardsItems>
       </SidebarRightPreviewCards>
+      <!--Trends Card-->
+      <SidebarRightPreviewCards title="Trending" buttonText="Show more" @edit-clicked="openTrendingPage">
+          <SidebarRightPreviewCardsItems v-for="trend in trends">
+              <div>
+                  <h2 class="font-bold text-gray-800 text-md dark:text-white">
+                      {{ trend.title }}
+                  </h2>
+                  <p class="text-xs text-gray-400">
+                      {{ trend.count }}
+                  </p>
+              </div>
+          </SidebarRightPreviewCardsItems>
+      </SidebarRightPreviewCards>
+      <!--People Card-->
+        <SidebarRightPreviewCards title="Who to follow"  buttonText="Show more" @edit-clicked="openLeaderboardPage">
+            <UserItem v-for="user in topUsersByFollowers" :key="user.id" :user="user" />
+        </SidebarRightPreviewCards>
+      
     </div>
     <UIModal :isOpen="modalOpen" @on-close="closeModal">
     <div class="relative">
@@ -56,7 +43,7 @@
             </div>
             <div class="w-full p-2 border rounded-md overflow-auto max-h-40">
                 <div v-for="stock in filteredStocks" :key="stock" class="flex items-center space-x-2">
-                    <input type="checkbox" :value="stock" v-model="selectedStocks" :disabled="selectedStocks.length >= 5 && !selectedStocks.includes(stock)" class="form-checkbox h-5 w-5 text-prime-0" />
+                    <input type="checkbox" :value="stock" v-model="selectedStocks" :disabled="selectedStocks.length >= 3 && !selectedStocks.includes(stock)" class="form-checkbox h-5 w-5 text-prime-0" />
                     <label :class="{'text-prime-0': selectedStocks.includes(stock), 'text-center': true}">{{ stock }}</label>
                 </div>
             </div>
@@ -69,6 +56,9 @@
 <script setup>
     import { ref, onMounted,watch } from 'vue'
     import { MagnifyingGlassIcon } from "@heroicons/vue/24/outline"
+    const {getTopFollows} = useExtra()
+    const topUsersByFollowers = ref([]);
+
     const trends = ref([
         {
             title:'#Chaman',
@@ -81,19 +71,11 @@
         {
             title:'#Shourya',
             count:'1.2k Up'
-        },
-        {
-            title:'#Nikhil',
-            count:'700 Up'
-        },
-        {
-            title:'#Kusum',
-            count:'100 Up'
-        },
+        }
     ])
     
     const allStocks = ['AAPL', 'GOOGL', 'MSFT', 'AMZN', 'TSLA', 'NFLX', 'NVDA', 'FB', 'INTC', 'PYPL', 'CMCSA', 'PEP', 'CSCO', 'ADBE', 'AMGN', 'AVGO', 'TXN', 'QCOM', 'GILD', 'SBUX', 'AMD', 'ADP', 'ATVI', 'BIIB', 'BKNG', 'BIDU', 'CELG', 'CERN', 'CHTR', 'CTAS', 'CTSH', 'CMG', 'COST', 'CSX', 'DISH', 'DLTR', 'EA', 'EBAY', 'EXPE', 'FAST', 'FISV', 'FOX', 'FOXA', 'GILD', 'HAS', 'HSIC', 'IDXX', 'ILMN', 'INCY', 'ISRG', 'JBHT', 'KLAC', 'LBTYA', 'LBTYK', 'LRCX', 'MAR', 'MCHP', 'MDLZ', 'MNST', 'MU', 'MXIM', 'MYL', 'NTAP', 'NTES', 'NVDA', 'ORLY', 'PAYX', 'PCAR', 'PDD', 'PEP', 'PYPL', 'QCOM', 'REGN', 'ROST', 'SBUX', 'SIRI', 'SNPS', 'SPLK', 'SWKS', 'TMUS', 'TSLA', 'TXN', 'ULTA', 'VRSK', 'VRSN', 'VRTX', 'WBA', 'WDAY', 'WDC', 'WLTW', 'XEL', 'XLNX', 'ZM'];
-    const selectedStocks = ref(JSON.parse(localStorage.getItem('selectedStocks')) || allStocks.slice(0, 5))
+    const selectedStocks = ref(JSON.parse(localStorage.getItem('selectedStocks')) || allStocks.slice(0, 3))
     const stocks = ref([])
     const modalOpen = ref(false)
     const {getStockData} = useExtra()
@@ -123,14 +105,17 @@
     }
 
     watch(selectedStocks, (newVal) => {
-        if (newVal.length > 5) {
-        selectedStocks.value = newVal.slice(0, 5);
+        if (newVal.length > 3) {
+        selectedStocks.value = newVal.slice(0, 3);
         }
     });
     
     onMounted(async () => {
         fetchStockPrices()
         setInterval(fetchStockPrices, 60000) // update every minute
+
+        const followersData = await getTopFollows()
+        topUsersByFollowers.value = await followersData.users.slice(0, 3);
     })
     
     const handleStockClick = (symbol) => {
@@ -172,6 +157,11 @@
     function openTrendingPage() {
         useRouter().push({
             path: '/trends',
+        })
+    }
+    function openLeaderboardPage() {
+        useRouter().push({
+            path: '/leaderboard',
         })
     }
 </script>

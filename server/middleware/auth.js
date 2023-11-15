@@ -21,6 +21,9 @@ export default defineEventHandler(async (event) => {
     '/api/badges/createBadge',
     '/api/badges/removebadges',
     '/api/perspective',
+    '/api/user/leaderboard/top-badges',
+    '/api/user/leaderboard/top-followers',
+    '/api/user/leaderboard/top-likes',
   ]
 
   const isHandledByMiddleware = endpoints.some(endpoint => {

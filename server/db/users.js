@@ -147,3 +147,126 @@ export const isUserFollowing = async (followerId, followingId) => {
     });
     return follow !== null;
 };
+/* 
+7days
+export const getTopUsersByFollowers = async () => {
+  const oneWeekAgo = new Date();
+  oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+
+  const users = await prisma.user.findMany({
+    where: {
+      createdAt: {
+        gte: oneWeekAgo,
+      },
+    },
+    include: {
+      followers: true,
+    },
+  });
+
+  // Sort users by followers count in descending order
+  users.sort((a, b) => b.followers.length - a.followers.length);
+
+  return users.slice(0, 10);
+};
+
+export const getTopUsersByBadges = async () => {
+  const oneWeekAgo = new Date();
+  oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+
+  const users = await prisma.user.findMany({
+    where: {
+      createdAt: {
+        gte: oneWeekAgo,
+      },
+    },
+    include: {
+      badges: true,
+    },
+  });
+
+  // Sort users by badges count in descending order
+  users.sort((a, b) => b.badges.length - a.badges.length);
+
+  return users.slice(0, 10);
+};
+
+export const getTopUsersByLikes = async () => {
+  const oneWeekAgo = new Date();
+  oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+
+  const users = await prisma.user.findMany({
+    where: {
+      createdAt: {
+        gte: oneWeekAgo,
+      },
+    },
+    include: {
+      posts: {
+        include: {
+          reaction: {
+            where: {
+              type: 'LIKE',
+            },
+          },
+        },
+      },
+    },
+  });
+
+  // Sort users by likes count in descending order
+  users.sort((a, b) => b.posts.reduce((sum, post) => sum + post.reaction.length, 0) - a.posts.reduce((sum, post) => sum + post.reaction.length, 0));
+
+  return users.slice(0, 10);
+};*/
+
+
+
+//All time
+export const getTopUsersByFollowers = async () => {
+    const users = await prisma.user.findMany({
+      include: {
+        followers: true,
+      },
+    });
+  
+    // Sort users by followers count in descending order
+    users.sort((a, b) => b.followers.length - a.followers.length);
+  
+    return users.slice(0, 10);
+};
+
+export const getTopUsersByBadges = async () => {
+    const users = await prisma.user.findMany({
+      include: {
+        badges: true,
+      },
+    });
+  
+    // Sort users by badges count in descending order
+    users.sort((a, b) => b.badges.length - a.badges.length);
+  
+    return users.slice(0, 10);
+};
+
+export const getTopUsersByLikes = async () => {
+    const users = await prisma.user.findMany({
+      include: {
+        posts: {
+          include: {
+            reaction: {
+              where: {
+                type: 'LIKE',
+              },
+            },
+          },
+        },
+      },
+    });
+  
+    // Sort users by likes count in descending order
+    users.sort((a, b) => b.posts.reduce((sum, post) => sum + post.reaction.length, 0) - a.posts.reduce((sum, post) => sum + post.reaction.length, 0));
+  
+    return users.slice(0, 10);
+};
+

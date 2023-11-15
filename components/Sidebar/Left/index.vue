@@ -26,9 +26,9 @@
         </template>
       </SidebarLeftTab>
 
-      <SidebarLeftTab :active="currentPage === '/messages'" path="/messages">
+      <SidebarLeftTab :active="currentPage === '/leaderboard'" path="/leaderboard">
         <template v-slot:icon>
-          <ChatBubbleOvalLeftIcon :class="currentPage === '/messages' ? 'text-prime-0' : 'text-gray-500'"/>
+          <FireIcon :class="currentPage === '/leaderboard' ? 'text-prime-0' : 'text-gray-500'"/>
         </template>
         <template v-slot:name>
           Messages
@@ -93,7 +93,7 @@
 </template>
 
 <script setup>
-import { HomeIcon,HashtagIcon, UserGroupIcon, Cog6ToothIcon,ChatBubbleOvalLeftIcon,InboxIcon,ArrowLeftOnRectangleIcon,MagnifyingGlassIcon } from "@heroicons/vue/24/outline"
+import { HomeIcon,HashtagIcon, UserGroupIcon, Cog6ToothIcon,ChatBubbleOvalLeftIcon,InboxIcon,ArrowLeftOnRectangleIcon,MagnifyingGlassIcon,FireIcon } from "@heroicons/vue/24/outline"
 import { useRoute } from 'vue-router'
 const { useAuthUser,logout } = useAuth()
 const user = useAuthUser()
