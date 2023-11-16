@@ -24,6 +24,7 @@ export default defineEventHandler(async (event) => {
     '/api/user/leaderboard/top-badges',
     '/api/user/leaderboard/top-followers',
     '/api/user/leaderboard/top-likes',
+    '/api/user/followed/:id'
   ]
 
   const isHandledByMiddleware = endpoints.some(endpoint => {

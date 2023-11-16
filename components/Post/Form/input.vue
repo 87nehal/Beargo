@@ -118,7 +118,7 @@ function handelPostSubmit (){
 
 function handleImageClick(){
   imageInput.value.click()
-  showStockSelect.value = !showStockSelect.value
+  showStockSelect.value = false
 }
 
 function handelImageChange(event){

@@ -269,4 +269,3 @@ export const getTopUsersByLikes = async () => {
   
     return users.slice(0, 10);
 };
-

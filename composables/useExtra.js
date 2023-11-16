@@ -50,6 +50,6 @@ export default () => {
         getStockData,
         getTopLikes,
         getTopFollows,
-        getTopBadges
+        getTopBadges,
     }  
 }
